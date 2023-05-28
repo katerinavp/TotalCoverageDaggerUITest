@@ -36,7 +36,12 @@ class AddExpenseFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AddExpensesComponent.getAddExpensesComponent((requireActivity().application as ExpensesApp).getAppComponent())
+//        AddExpensesComponent.getAddExpensesComponent((requireActivity().application as ExpensesApp).getAppComponent())
+//            .inject(this)
+
+        (requireContext().applicationContext as ExpensesApp).getAppComponent()
+            .addExpensesComponent()
+            .create()
             .inject(this)
     }
 

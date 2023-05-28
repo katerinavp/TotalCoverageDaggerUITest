@@ -5,24 +5,31 @@ import dagger.Binds
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import dagger.Subcomponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import otus.demo.totalcoverage.addexpense.AddExpensesComponent
 import otus.demo.totalcoverage.di.AppComponent
 import otus.demo.totalcoverage.di.FeatureScope
 import javax.inject.Named
 
 @FeatureScope
-@Component(
+@Subcomponent(
     modules = [ExpensesModule::class],
-    dependencies = [AppComponent::class]
-)
+
+    )
 interface ExpensesComponent {
 
-    companion object {
+    //    companion object {
+//
+//        fun getExpensesComponent(appComponent: AppComponent): ExpensesComponent {
+//            return DaggerExpensesComponent.builder().appComponent(appComponent).build()
+//        }
+//    }
 
-        fun getExpensesComponent(appComponent: AppComponent): ExpensesComponent {
-            return DaggerExpensesComponent.builder().appComponent(appComponent).build()
-        }
+    @Subcomponent.Factory //если в сабкомпоненте
+    interface Factory {
+        fun create(): ExpensesComponent
     }
 
     fun inject(expensesFragment: ExpensesFragment)

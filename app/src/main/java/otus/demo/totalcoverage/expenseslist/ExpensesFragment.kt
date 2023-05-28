@@ -45,7 +45,12 @@ class ExpensesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ExpensesComponent.getExpensesComponent((requireActivity().application as ExpensesApp).getAppComponent())
+//        ExpensesComponent.getExpensesComponent((requireActivity().application as ExpensesApp).getAppComponent())
+//            .inject(this)
+
+        (requireContext().applicationContext as ExpensesApp).getAppComponent()
+            .expensesComponent()
+            .create()
             .inject(this)
         setHasOptionsMenu(true)
     }
