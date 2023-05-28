@@ -41,7 +41,7 @@ class AddExpenseFragment : Fragment() {
 
         (requireContext().applicationContext as ExpensesApp).getAppComponent()
             .addExpensesComponent()
-            .create()
+            .create(arguments?.getLong("SOME_ID")?:0L, 0)
             .inject(this)
     }
 
